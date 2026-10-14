@@ -5,7 +5,13 @@ def logo(i): return LOGO.replace('id="lg"',f'id="{i}"').replace('url(#lg)',f'url
 ICON={'gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
 NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('guides.html','Guides')]
 KIT='https://saemstudio.gumroad.com/l/wgsvhv'
-PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{KIT}" rel="noopener">See the Pitch Kit · ₹299</a></section>'
+# Week-1 tracked links (from /workspace/earn/org/marketing/tracking-links.csv). Payhip omitted: Earn-Quality FAIL 15 Oct.
+TL={'promo_kit':'https://saemstudio.gumroad.com/l/wgsvhv?utm_source=hisaabmitra&utm_medium=referral&utm_campaign=gtm30_w1&utm_content=promo_box_gumroad_pitchkit&utm_term=store_gumroad',
+ 'blog_kit':'https://saemstudio.gumroad.com/l/wgsvhv?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_gumroad_pitchkit&utm_term=store_gumroad',
+ 'gst.html':'https://saemali.github.io/tools-site/gst.html?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_site_hisaabmitra',
+ 'tds.html':'https://saemali.github.io/tools-site/tds.html?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_site_hisaabmitra',
+ 'invoice.html':'https://saemali.github.io/tools-site/invoice.html?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_site_hisaabmitra'}
+PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{TL['promo_kit'].replace('&','&amp;')}" rel="noopener">See the Pitch Kit · ₹299</a></section>'
 PROMO_PAGES={'index.html','gst.html','tds.html','invoice.html'}
 def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
     nav=''.join(f'<a href="{h}"{" aria-current=page" if h==fn else ""}>{t}</a>' for h,t in NAV)
@@ -105,8 +111,9 @@ SLUG={fn:m['slug']+'.html' for fn,m,_ in ARTS}
 for fn,m,body in ARTS:
     body=re.sub(r'```html\s*<script type="application/ld\+json">.*?</script>\s*```','',body,flags=re.S)
     keep=m['slug'] in KIT_GUIDES
-    body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({KIT}) (₹299) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
+    body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({TL['blog_kit']}) (₹299) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
     for k,v in SLUG.items(): body=body.replace(f']({k})',f']({D}{v})')
+    for t in ('gst.html','tds.html','invoice.html'): body=body.replace(f']({D}{t})',f']({TL[t]})')
     fq=re.search(r'## FAQ\n(.*?)\n## ',body,re.S).group(1)
     faq=re.findall(r'\*\*(.+?\?)\*\*\n(.+)',fq)
     h1=re.search(r'^# (.+)$',body,re.M).group(1); body=re.sub(r'^# .+\n','',body,count=1,flags=re.M)
