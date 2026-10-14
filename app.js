@@ -1,7 +1,7 @@
 (()=>{const $=i=>document.getElementById(i),R=n=>{const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:($(n)||{}).value},
 f=(x,d=2)=>'₹'+(+x).toLocaleString('en-IN',{maximumFractionDigits:d}),fx=x=>(+x).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}),N=i=>Math.max(0,parseFloat($(i).value)||0),
 esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),row=(a,b)=>`<div class="row"><span>${a}</span><b>${b}</b></div>`;
-const t=$('theme');if(t)t.onclick=()=>{const d=document.documentElement,n=d.dataset.theme=='dark'?'light':'dark';d.dataset.theme=n;localStorage.theme=n};
+const t=$('theme');if(t){t.setAttribute('aria-pressed',document.documentElement.dataset.theme=='dark');t.onclick=()=>{const d=document.documentElement,n=d.dataset.theme=='dark'?'light':'dark';d.dataset.theme=n;localStorage.theme=n;t.setAttribute('aria-pressed',n=='dark')}};
 const C={
 gst(){const a=N('a'),r=+R('r'),base=R('m')=='add'?a:a*100/(100+r),g=base*r/100;
  return `<span>Total amount</span><div class="big">${f(base+g)}</div>`+row('Taxable value',f(base))+(R('s')=='intra'?row(`CGST ${r/2}%`,f(g/2))+row(`SGST ${r/2}%`,f(g/2)):row(`IGST ${r}%`,f(g)))+row('Total GST',f(g))+'<p class="note">Most freelance services: 18%. Check your SAC code\'s rate on CBIC.</p>'},
