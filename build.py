@@ -5,7 +5,7 @@ def logo(i): return LOGO.replace('id="lg"',f'id="{i}"').replace('url(#lg)',f'url
 ICON={'gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
 NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('guides.html','Guides')]
 KIT='https://saemstudio.gumroad.com/l/wgsvhv'
-PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{KIT}" rel="noopener">See the Pitch Kit</a></section>'
+PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{KIT}" rel="noopener">See the Pitch Kit · ₹299</a></section>'
 PROMO_PAGES={'index.html','gst.html','tds.html','invoice.html'}
 def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
     nav=''.join(f'<a href="{h}"{" aria-current=page" if h==fn else ""}>{t}</a>' for h,t in NAV)
