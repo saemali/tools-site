@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="style.css"></head><body><header><a href="index.html"><b>FreelanceTools.in</b></a> <nav><a href="gst.html">GST</a><a href="tds.html">TDS</a><a href="emi.html">EMI</a><a href="invoice.html">Invoice</a></nav></header><main>
 <h1>GST Invoice Generator</h1><div class="noprint"><p>Fill in the details, then click Print and choose "Save as PDF". Nothing leaves your browser.</p>
 <label>Your name / business</label><input id="fn" value="Your Name"><label>Your GSTIN (optional)</label><input id="fg"><label>Client name &amp; address</label><input id="cn" value="Client Pvt Ltd, Mumbai"><label>Client GSTIN</label><input id="cg">
-<label>Invoice no.</label><input id="no" value="INV-001"><label>GST rate %</label><select id="gr"><option>0</option><option>5</option><option>12</option><option selected>18</option><option>28</option></select>
+<label>Invoice no.</label><input id="no" value="INV-001"><label>GST rate %</label><select id="gr"><option>0</option><option>5</option><option selected>18</option><option>40</option></select>
 <label>Supply</label><select id="sp"><option value="intra">Same state (CGST+SGST)</option><option value="inter">Other state (IGST)</option></select>
 <p>Items (one per line: description | SAC | qty | rate)</p><textarea id="it" rows="4" style="width:100%">Website design | 998314 | 1 | 15000</textarea>
 <button onclick="g()">Update invoice</button> <button onclick="window.print()">Print / Save PDF</button></div>
