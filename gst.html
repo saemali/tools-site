@@ -1,0 +1,17 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GST Calculator India – Add or Remove GST (CGST, SGST, IGST)</title><meta name="description" content="Free GST calculator for India. Add or remove GST at 5%, 12%, 18% or 28% and see the CGST, SGST and IGST split instantly."><link rel="canonical" href="https://saemali.github.io/tools-site/gst.html">
+<meta property="og:title" content="GST Calculator India – Add or Remove GST (CGST, SGST, IGST)"><meta property="og:description" content="Free GST calculator for India. Add or remove GST at 5%, 12%, 18% or 28% and see the CGST, SGST and IGST split instantly."><meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css"></head><body><header><a href="index.html"><b>FreelanceTools.in</b></a> <nav><a href="gst.html">GST</a><a href="tds.html">TDS</a><a href="emi.html">EMI</a><a href="invoice.html">Invoice</a></nav></header><main>
+<h1>GST Calculator</h1><label>Amount (₹)</label><input id="a" type="number" value="10000">
+<label>GST rate</label><select id="r"><option>5</option><option>12</option><option selected>18</option><option>28</option></select>
+<label>Mode</label><select id="m"><option value="add">Add GST (exclusive)</option><option value="rem">Remove GST (inclusive)</option></select>
+<label>Supply</label><select id="s"><option value="intra">Same state (CGST+SGST)</option><option value="inter">Other state (IGST)</option></select>
+<button onclick="c()">Calculate</button><div class="out" id="o"></div>
+<script>function f(x){return '₹'+x.toLocaleString('en-IN',{maximumFractionDigits:2})}
+function c(){let a=+document.getElementById('a').value,r=+document.getElementById('r').value,m=document.getElementById('m').value,s=document.getElementById('s').value;
+let base=m=='add'?a:a*100/(100+r),g=base*r/100,t=base+g;
+document.getElementById('o').innerHTML='Taxable value: '+f(base)+'<br>GST: '+f(g)+(s=='intra'?' (CGST '+f(g/2)+' + SGST '+f(g/2)+')':' (IGST)')+'<br><b>Total: '+f(t)+'</b>'}c()</script>
+<h2>How GST is calculated</h2><p>Add GST: GST = amount × rate / 100. Remove GST: base = amount × 100 / (100 + rate). For sales within your state, GST splits equally into CGST and SGST. For sales to another state, the whole amount is IGST.</p>
+<h2>Do freelancers need GST?</h2><p>Service providers generally need to register once their annual turnover crosses ₹20 lakh (₹10 lakh in special category states). Exports of services can be zero-rated under a LUT. Always confirm with a CA.</p>
+<aside class="promo"><b>Freelancer Pitch Kit</b> – 47 pages of proposals, pitch emails &amp; rate cards for Indian freelancers. <a href="GUMROAD_PITCH_KIT_URL">Get it (₹499)</a></aside>
+<p class="small">Estimates only, not tax advice. Check current rates with a CA or official sources (cbic-gst.gov.in, incometax.gov.in).</p></main><footer>© 2026 FreelanceTools.in · Free, no signup, runs in your browser.</footer></body></html>

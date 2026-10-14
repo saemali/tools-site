@@ -1,0 +1,12 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TDS Calculator for Freelancers – 194J, 194C TDS on Professional Fees</title><meta name="description" content="Free TDS calculator for Indian freelancers and contractors. Work out TDS under 194J (10%/2%) and 194C (1%/2%) and see your net payment."><link rel="canonical" href="https://saemali.github.io/tools-site/tds.html">
+<meta property="og:title" content="TDS Calculator for Freelancers – 194J, 194C TDS on Professional Fees"><meta property="og:description" content="Free TDS calculator for Indian freelancers and contractors. Work out TDS under 194J (10%/2%) and 194C (1%/2%) and see your net payment."><meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css"></head><body><header><a href="index.html"><b>FreelanceTools.in</b></a> <nav><a href="gst.html">GST</a><a href="tds.html">TDS</a><a href="emi.html">EMI</a><a href="invoice.html">Invoice</a></nav></header><main>
+<h1>TDS Calculator</h1><label>Invoice amount excluding GST (₹)</label><input id="a" type="number" value="50000">
+<label>Section</label><select id="r"><option value="10">194J – professional/technical fees (10%)</option><option value="2">194J – technical services/call centre (2%)</option><option value="1">194C – contractor, individual/HUF (1%)</option><option value="2">194C – contractor, others (2%)</option><option value="20">No PAN provided (20%)</option></select>
+<button onclick="c()">Calculate</button><div class="out" id="o"></div>
+<script>function f(x){return '₹'+x.toLocaleString('en-IN',{maximumFractionDigits:2})}
+function c(){let a=+document.getElementById('a').value,r=+document.getElementById('r').value,t=a*r/100;document.getElementById('o').innerHTML='TDS deducted: '+f(t)+'<br><b>Net received: '+f(a-t)+'</b><br>You can claim this TDS against your tax via Form 26AS / AIS.'}c()</script>
+<p>Thresholds and rates change with the Union Budget (e.g. the 194J threshold of ₹30,000/year, revised in recent budgets). Check incometax.gov.in for the current year.</p>
+<aside class="promo"><b>Freelancer Pitch Kit</b> – 47 pages of proposals, pitch emails &amp; rate cards for Indian freelancers. <a href="GUMROAD_PITCH_KIT_URL">Get it (₹499)</a></aside>
+<p class="small">Estimates only, not tax advice. Check current rates with a CA or official sources (cbic-gst.gov.in, incometax.gov.in).</p></main><footer>© 2026 FreelanceTools.in · Free, no signup, runs in your browser.</footer></body></html>
