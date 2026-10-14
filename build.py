@@ -129,6 +129,11 @@ page('gst-late-fee.html','GST Late Fee & Interest Calculator (GSTR-3B, GSTR-1) |
  faq=[('What is the late fee for GSTR-3B?','₹50 a day (₹25 CGST + ₹25 SGST), or ₹20 a day for a nil return, capped by turnover: ₹2,000 up to ₹1.5 crore, ₹5,000 up to ₹5 crore, ₹10,000 above, and ₹500 for nil returns.'),('What interest is charged on late GST?','18% a year under section 50 of the CGST Act, on tax paid late in cash, from the day after the due date until payment.'),('Is there a late fee on IGST?','No. Late fee is charged only under CGST and SGST/UTGST.')])
 
 # ARTICLES (from content/*.md)
+import re
+FAQ_ADD={}
+for blk in open(f'{OUT}/content/faq-additions.md').read().split('## Target: ')[1:]:
+    sl=re.search(r'tools-site/([\w-]+)\.html',blk).group(1)
+    FAQ_ADD[sl]='\n\n'.join(f'**{q}**\n{a}' for q,a in re.findall(r'^\*\*(.+?\?)\*\*\n(.+)$',blk.split('`mainEntity`')[0],re.M))
 KIT_GUIDES={'gstr-3b-due-date-october-2026','gst-rate-for-freelancers-2026','tds-on-freelance-payment','free-gst-invoice-generator','gstr-1-due-date-november-2026'}
 import glob,re,markdown
 ARTS=[]
@@ -143,6 +148,8 @@ for fn,m,body in ARTS:
     body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({TL['blog_kit']}) (₹299) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
     for k,v in SLUG.items(): body=body.replace(f']({k})',f']({D}{v})')
     for t in ('gst.html','tds.html','invoice.html'): body=body.replace(f']({D}{t})',f']({TL[t]})')
+    add=FAQ_ADD.get(m['slug'],'')
+    if add: body=re.sub(r'(## FAQ\n.*?)(\n## )',lambda x:x.group(1).rstrip()+'\n\n'+add+'\n'+x.group(2),body,count=1,flags=re.S)
     fq=re.search(r'## FAQ\n(.*?)\n## ',body,re.S).group(1)
     faq=re.findall(r'\*\*(.+?\?)\*\*\n(.+)',fq)
     h1=re.search(r'^# (.+)$',body,re.M).group(1); body=re.sub(r'^# .+\n','',body,count=1,flags=re.M)
