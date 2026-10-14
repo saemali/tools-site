@@ -2,8 +2,8 @@ import json,os
 OUT='/workspace/earn/tools-site'; D='https://saemali.github.io/tools-site/'
 LOGO='<svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="40" height="40" rx="11" fill="url(#lg)"/><text x="20" y="28" text-anchor="middle" font-size="22" font-weight="800" fill="#fff" font-family="system-ui">₹</text></svg>'
 def logo(i): return LOGO.replace('id="lg"',f'id="{i}"').replace('url(#lg)',f'url(#{i})')
-ICON={'gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
-NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('guides.html','Guides')]
+ICON={'regime':'⚖️','gstlate':'⏰','gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
+NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('regime.html','Tax regime'),('gst-late-fee.html','GST late fee'),('guides.html','Guides')]
 KIT='https://saemstudio.gumroad.com/l/wgsvhv'
 # Week-1 tracked links (from /workspace/earn/org/marketing/tracking-links.csv). Payhip omitted: Earn-Quality FAIL 15 Oct.
 TL={'promo_kit':'https://saemstudio.gumroad.com/l/wgsvhv?utm_source=hisaabmitra&utm_medium=referral&utm_campaign=gtm30_w1&utm_content=promo_box_gumroad_pitchkit&utm_term=store_gumroad',
@@ -12,7 +12,7 @@ TL={'promo_kit':'https://saemstudio.gumroad.com/l/wgsvhv?utm_source=hisaabmitra&
  'tds.html':'https://saemali.github.io/tools-site/tds.html?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_site_hisaabmitra',
  'invoice.html':'https://saemali.github.io/tools-site/invoice.html?utm_source=blog&utm_medium=organic&utm_campaign=gtm30_w1&utm_content=article_cta_site_hisaabmitra'}
 PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{TL['promo_kit'].replace('&','&amp;')}" rel="noopener">See the Pitch Kit · ₹299</a></section>'
-PROMO_PAGES={'index.html','gst.html','tds.html','invoice.html'}
+PROMO_PAGES={'index.html','gst.html','tds.html','invoice.html','regime.html','gst-late-fee.html'}
 def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
     nav=''.join(f'<a href="{h}"{" aria-current=page" if h==fn else ""}>{t}</a>' for h,t in NAV)
     schema=extra_schema
@@ -99,6 +99,35 @@ open(f'{OUT}/favicon.svg','w').write(LOGO.replace(' class="logo"','').replace(' 
 urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p in ['','gst.html','tds.html','emi.html','invoice.html','about.html','privacy.html','disclaimer.html'])
 open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
 
+
+# NEW TOOLS (FY 2026-27)
+NOTE='<p><b>Not tax advice.</b> Estimates for general information only. Rules change and your situation may differ; confirm with a Chartered Accountant before filing. <b>Checked 15 Oct 2026.</b></p>'
+rg=tool('regime','Old vs New Tax Regime Calculator FY 2026-27','पुरानी या नई टैक्स व्यवस्था: आपके लिए कौन सी सस्ती?','Enter your salary, HRA and deductions to compare tax under both regimes for tax year 2026-27, with standard deduction, rebate and 4% cess.',
+ num('s','Annual salary (gross, before standard deduction)','1500000')+num('o','Other income (interest, freelance profit etc.)','0')+seg('ag','Your age',[('0','Below 60'),('60','60–79'),('80','80+')],'0')+
+ '<h3>HRA (old regime only)</h3>'+num('b','Annual basic + DA','600000')+num('h','HRA received in the year','240000')+num('rt','Rent paid in the year','300000')+seg('m','Do you live in Mumbai, Delhi, Kolkata, Chennai, Bengaluru, Hyderabad, Pune or Ahmedabad?',[('y','Yes (50%)'),('n','No (40%)')],'y')+
+ '<h3>Deductions (old regime only)</h3>'+num('c','80C investments: PF, PPF, ELSS, LIC, tuition etc. (max ₹1,50,000)','150000')+num('d','80D health insurance (eligible amount, see limits below)','25000')+num('np','Own NPS contribution, 80CCD(1B) (max ₹50,000)','0')+num('hl','Home-loan interest, self-occupied (max ₹2,00,000)','0')+num('ot','Other deductions (80G, 80E, 80TTA etc.)','0'),'')
+rg+=('<section class="wrap prose card"><h2>Rates and limits used</h2><ul>'
+'<li><b>New regime (default, s.202 Income-tax Act 2025):</b> nil up to ₹4L; 5% ₹4–8L; 10% ₹8–12L; 15% ₹12–16L; 20% ₹16–20L; 25% ₹20–24L; 30% above ₹24L. Standard deduction ₹75,000 on salary.</li>'
+'<li><b>Rebate (s.156, old 87A):</b> new regime, up to ₹60,000 if taxable income is ₹12L or less, with marginal relief just above ₹12L; old regime, up to ₹12,500 if taxable income is ₹5L or less.</li>'
+'<li><b>Old regime:</b> nil up to ₹2.5L (₹3L if 60–79, ₹5L if 80+); 5% to ₹5L; 20% ₹5–10L; 30% above ₹10L. Standard deduction ₹50,000.</li>'
+'<li><b>Old-regime deductions:</b> 80C ₹1.5L; 80CCD(1B) NPS ₹50,000; 80D ₹25,000 for self/family (₹50,000 if senior) plus ₹25,000 for parents (₹50,000 if senior); home-loan interest ₹2L.</li>'
+'<li><b>HRA:</b> least of HRA received; rent minus 10% of basic+DA; 50% of basic+DA in Mumbai, Kolkata, Delhi, Chennai, Hyderabad, Pune, Ahmedabad and Bengaluru (four cities added from tax year 2026-27 by the Income-tax Rules 2026), 40% elsewhere.</li>'
+'<li><b>Cess:</b> 4% health and education cess. Surcharge (income above ₹50L) is not included.</li></ul>'
+'<p>The Finance Bill 2026 memorandum states there is no change in tax rates for tax year 2026-27. Deductions use their familiar old section numbers; the 2025 Act renumbers them (80C is now s.123).</p>'
+'<p>Official sources: <a href="https://www.incometaxindia.gov.in/documents/81799/11848482/memo-2026.pdf" rel="noopener">Finance Bill 2026 memorandum</a>, <a href="https://www.incometaxindia.gov.in/w/threshold-limits-under-income-tax-act" rel="noopener">Threshold limits under the Income-tax Act</a>, <a href="https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1" rel="noopener">incometax.gov.in: old vs new slabs</a>, <a href="https://www.incometaxindia.gov.in/documents/d/guest/en-notified-it-rules-2026-20-03-2026-pdf" rel="noopener">Income-tax Rules 2026</a>.</p>'+NOTE+'</section>')
+page('regime.html','Old vs New Tax Regime Calculator FY 2026-27 (with HRA) | HisaabMitra','Compare old and new tax regime for FY 2026-27: HRA, 80C, 80D, NPS, home-loan interest, standard deduction, ₹12 lakh rebate and 4% cess. Free and private.',rg,
+ faq=[('Is the new regime the default for FY 2026-27?','Yes. The new regime under section 202 of the Income-tax Act 2025 is the default; you must opt out to use the old regime.'),('Is income up to ₹12 lakh tax-free in the new regime?','For a resident individual the rebate makes tax nil when taxable income is up to ₹12 lakh (₹12.75 lakh salary after the ₹75,000 standard deduction), excluding special-rate income such as capital gains.'),('Which cities get 50% HRA?','From tax year 2026-27: Mumbai, Delhi, Kolkata, Chennai, Bengaluru, Hyderabad, Pune and Ahmedabad. Everywhere else is 40%.')])
+gl=tool('gstlate','GST Late Fee & Interest Calculator','GSTR-3B या GSTR-1 देर से? लेट फीस और ब्याज तुरंत जानें','Work out the late fee (with the cap for your turnover) and 18% interest for a late GSTR-3B or GSTR-1.',
+ seg('rtn','Return',[('3b','GSTR-3B'),('1','GSTR-1')],'3b')+num('dl','Days late (after the due date)','10','',step='1')+seg('nil','Nil return?',[('n','No'),('y','Yes, nil')],'n')+
+ seg('band','Aggregate turnover last year',[('a','Up to ₹1.5 cr'),('b','₹1.5–5 cr'),('c','Above ₹5 cr')],'a')+num('tx','Tax paid late in cash (for interest)','20000')+num('di','Days of delay for the tax payment','10','',step='1'),'')
+gl+=('<section class="wrap prose card"><h2>Rates and caps used</h2><ul>'
+'<li><b>Late fee:</b> ₹25/day CGST + ₹25/day SGST (₹50/day); nil returns ₹10 + ₹10 (₹20/day). No late fee under IGST.</li>'
+'<li><b>Caps per return (CGST + SGST):</b> nil return ₹500; turnover up to ₹1.5 cr ₹2,000; ₹1.5–5 cr ₹5,000; above ₹5 cr ₹10,000. Same caps for GSTR-3B (Notification 19/2021-CT) and GSTR-1 (Notification 20/2021-CT).</li>'
+'<li><b>Interest (s.50 CGST Act):</b> 18% a year on tax paid late, on the portion paid in cash (Notification 13/2017-CT), per day from the day after the due date.</li></ul>'
+'<p>Official sources: <a href="https://tutorial.gst.gov.in/userguide/returns/Create_and_Submit_GSTR3B.htm" rel="noopener">GST portal: GSTR-3B late fee and interest</a>, <a href="https://www.gstcouncil.gov.in/sites/default/files/2024-05/notfctn-19-central-tax-english-2021.pdf" rel="noopener">Notification 19/2021-CT</a>, <a href="https://gstcouncil.gov.in/sites/default/files/2024-05/notfctn-20-central-tax-english-2021.pdf" rel="noopener">Notification 20/2021-CT</a>, <a href="https://gstcouncil.gov.in/sites/default/files/2024-04/notfctn-13-central-tax-english.pdf" rel="noopener">Notification 13/2017-CT</a>, <a href="https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter10/section50_v1.00.html" rel="noopener">CGST Act s.50 (CBIC)</a>.</p>'+NOTE+'</section>')
+page('gst-late-fee.html','GST Late Fee & Interest Calculator (GSTR-3B, GSTR-1) | HisaabMitra','Calculate GST late fee for GSTR-3B and GSTR-1 with turnover-based caps (₹500 nil to ₹10,000) and 18% interest under section 50. Free, no signup.',gl,
+ faq=[('What is the late fee for GSTR-3B?','₹50 a day (₹25 CGST + ₹25 SGST), or ₹20 a day for a nil return, capped by turnover: ₹2,000 up to ₹1.5 crore, ₹5,000 up to ₹5 crore, ₹10,000 above, and ₹500 for nil returns.'),('What interest is charged on late GST?','18% a year under section 50 of the CGST Act, on tax paid late in cash, from the day after the due date until payment.'),('Is there a late fee on IGST?','No. Late fee is charged only under CGST and SGST/UTGST.')])
+
 # ARTICLES (from content/*.md)
 KIT_GUIDES={'gstr-3b-due-date-october-2026','gst-rate-for-freelancers-2026','tds-on-freelance-payment','free-gst-invoice-generator','gstr-1-due-date-november-2026'}
 import glob,re,markdown
@@ -123,5 +152,5 @@ for fn,m,body in ARTS:
     page(SLUG[fn],m['title']+' | HisaabMitra',m['meta_description'],art,extra_schema=sch)
 lst=''.join(f'<a class="tcard" href="{SLUG[fn]}"><h3>{m["title"]}</h3><p>{m["meta_description"]}</p><span class="go">Read guide →</span></a>' for fn,m,_ in ARTS)
 page('guides.html','Guides: GST, TDS, advance tax & EMI for freelancers | HisaabMitra','Plain-language guides on GST due dates, GST rates, TDS, invoices, advance tax, ITC and loan EMIs for Indian freelancers and small businesses.',f'<section class="wrap phead"><h1>Guides</h1><p class="lead">Plain-language explainers, checked against official sources.</p></section><section class="wrap grid">{lst}</section>')
-urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p in ['','gst.html','tds.html','emi.html','invoice.html','guides.html']+list(SLUG.values())+['about.html','privacy.html','disclaimer.html'])
+urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p in ['','gst.html','tds.html','emi.html','invoice.html','regime.html','gst-late-fee.html','guides.html']+list(SLUG.values())+['about.html','privacy.html','disclaimer.html'])
 open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
