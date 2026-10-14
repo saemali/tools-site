@@ -105,7 +105,7 @@ SLUG={fn:m['slug']+'.html' for fn,m,_ in ARTS}
 for fn,m,body in ARTS:
     body=re.sub(r'```html\s*<script type="application/ld\+json">.*?</script>\s*```','',body,flags=re.S)
     keep=m['slug'] in KIT_GUIDES
-    body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({KIT}) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
+    body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({KIT}) (₹299) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
     for k,v in SLUG.items(): body=body.replace(f']({k})',f']({D}{v})')
     fq=re.search(r'## FAQ\n(.*?)\n## ',body,re.S).group(1)
     faq=re.findall(r'\*\*(.+?\?)\*\*\n(.+)',fq)
