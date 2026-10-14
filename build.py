@@ -3,10 +3,10 @@ OUT='/workspace/earn/tools-site'; D='https://saemali.github.io/tools-site/'
 LOGO='<svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="40" height="40" rx="11" fill="url(#lg)"/><text x="20" y="28" text-anchor="middle" font-size="22" font-weight="800" fill="#fff" font-family="system-ui">₹</text></svg>'
 def logo(i): return LOGO.replace('id="lg"',f'id="{i}"').replace('url(#lg)',f'url(#{i})')
 ICON={'gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
-NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice')]
-def page(fn,title,desc,body,faq=None,h1=''):
+NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('guides.html','Guides')]
+def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
     nav=''.join(f'<a href="{h}"{" aria-current=page" if h==fn else ""}>{t}</a>' for h,t in NAV)
-    schema=''
+    schema=extra_schema
     if faq: schema='<script type="application/ld+json">'+json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faq]},ensure_ascii=False)+'</script>'
     faqh=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in (faq or []))
     faqsec=f'<section class="wrap faq"><h2>Common questions <span class="hi">· aksar pooche jaane wale sawaal</span></h2>{faqh}</section>' if faq else ''
@@ -20,7 +20,7 @@ def page(fn,title,desc,body,faq=None,h1=''):
 <button class="theme" id="theme" aria-label="Dark mode" aria-pressed="false">◐</button></div></header>
 <main id="main">{body}</main>{faqsec}
 <footer class="foot"><div class="wrap fgrid"><div><a class="brand" href="./">{logo("lg2")}<span>Hisaab<b>Mitra</b></span></a><p>Free, private money tools for India's freelancers and small businesses. आपका हिसाब, आसान भाषा में.</p></div>
-<div><h4>Tools</h4>{''.join(f'<a href="{h}">{t} {"generator" if t=="Invoice" else "calculator"}</a>' for h,t in NAV)}</div>
+<div><h4>Tools</h4>{''.join(f'<a href="{h}">{t} {"generator" if t=="Invoice" else "calculator"}</a>' for h,t in NAV if h!="guides.html")}<a href="guides.html">Guides</a></div>
 <div><h4>About</h4><a href="about.html">About &amp; contact</a><a href="privacy.html">Privacy policy</a><a href="disclaimer.html">Disclaimer</a></div></div>
 <p class="wrap fine">Estimates for general information only, not tax, legal or financial advice. Rates checked Oct 2026 against CBIC, India Budget and incometax.gov.in. Please confirm with a Chartered Accountant. © 2026 HisaabMitra.</p></footer>
 <script src="app.js"></script></body></html>'''
@@ -88,4 +88,28 @@ for fn,t,b in [('about.html','About & Contact','<p>HisaabMitra is a small, indep
     page(fn,f'{t} | HisaabMitra',f'{t} for HisaabMitra free GST, TDS and EMI tools.',f'<section class="wrap phead"><h1>{t}</h1></section><section class="wrap prose card">{b}</section>')
 open(f'{OUT}/favicon.svg','w').write(LOGO.replace(' class="logo"','').replace(' aria-hidden="true"',' xmlns="http://www.w3.org/2000/svg"'))
 urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p in ['','gst.html','tds.html','emi.html','invoice.html','about.html','privacy.html','disclaimer.html'])
+open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
+
+# ARTICLES (from content/*.md)
+import glob,re,markdown
+ARTS=[]
+for f in sorted(glob.glob(f'{OUT}/content/0*.md')):
+    raw=open(f).read(); _,fm,body=raw.split('---',2)
+    meta={k.strip():v.strip().strip('"') for k,v in (l.split(':',1) for l in fm.strip().splitlines() if ':' in l)}
+    ARTS.append((os.path.basename(f),meta,body))
+SLUG={fn:m['slug']+'.html' for fn,m,_ in ARTS}
+for fn,m,body in ARTS:
+    body=re.sub(r'```html\s*<script type="application/ld\+json">.*?</script>\s*```','',body,flags=re.S)
+    body='\n'.join(l for l in body.split('\n') if '[PITCH_KIT_URL]' not in l)
+    for k,v in SLUG.items(): body=body.replace(f']({k})',f']({D}{v})')
+    fq=re.search(r'## FAQ\n(.*?)\n## ',body,re.S).group(1)
+    faq=re.findall(r'\*\*(.+?\?)\*\*\n(.+)',fq)
+    h1=re.search(r'^# (.+)$',body,re.M).group(1); body=re.sub(r'^# .+\n','',body,count=1,flags=re.M)
+    html=markdown.markdown(body,extensions=['tables','fenced_code'])
+    art=f'<article><section class="wrap phead"><span class="chip">📚 Guide · updated {m.get("last_checked","")}</span><h1>{h1}</h1></section><section class="wrap prose card">{html}</section></article>'
+    sch='<script type="application/ld+json">'+json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faq]},ensure_ascii=False)+'</script>'
+    page(SLUG[fn],m['title']+' | HisaabMitra',m['meta_description'],art,extra_schema=sch)
+lst=''.join(f'<a class="tcard" href="{SLUG[fn]}"><h3>{m["title"]}</h3><p>{m["meta_description"]}</p><span class="go">Read guide →</span></a>' for fn,m,_ in ARTS)
+page('guides.html','Guides: GST, TDS, advance tax & EMI for freelancers | HisaabMitra','Plain-language guides on GST due dates, GST rates, TDS, invoices, advance tax, ITC and loan EMIs for Indian freelancers and small businesses.',f'<section class="wrap phead"><h1>Guides</h1><p class="lead">Plain-language explainers, checked against official sources.</p></section><section class="wrap grid">{lst}</section>')
+urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p in ['','gst.html','tds.html','emi.html','invoice.html','guides.html']+list(SLUG.values())+['about.html','privacy.html','disclaimer.html'])
 open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
