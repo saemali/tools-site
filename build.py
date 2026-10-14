@@ -4,6 +4,9 @@ LOGO='<svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGrad
 def logo(i): return LOGO.replace('id="lg"',f'id="{i}"').replace('url(#lg)',f'url(#{i})')
 ICON={'gst':'🧾','tds':'✂️','emi':'🏦','invoice':'📄'}
 NAV=[('gst.html','GST'),('tds.html','TDS'),('emi.html','EMI'),('invoice.html','Invoice'),('guides.html','Guides')]
+KIT='https://saemstudio.gumroad.com/l/wgsvhv'
+PROMO=f'<section class="wrap promo"><div><span class="tag">For freelancers</span><h3>Freelancer Pitch Kit</h3><p>Proposal templates, pitch emails and follow-ups written for Indian freelancers, so you can win clients and get paid on time.</p></div><a class="btn" href="{KIT}" rel="noopener">See the Pitch Kit</a></section>'
+PROMO_PAGES={'index.html','gst.html','tds.html','invoice.html'}
 def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
     nav=''.join(f'<a href="{h}"{" aria-current=page" if h==fn else ""}>{t}</a>' for h,t in NAV)
     schema=extra_schema
@@ -18,7 +21,7 @@ def page(fn,title,desc,body,faq=None,h1='',extra_schema=''):
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap bar"><a class="brand" href="./">{logo("lg")}<span>Hisaab<b>Mitra</b></span></a><nav aria-label="Tools">{nav}</nav>
 <button class="theme" id="theme" aria-label="Dark mode" aria-pressed="false">◐</button></div></header>
-<main id="main">{body}</main>{faqsec}
+<main id="main">{body}</main>{faqsec}{PROMO if fn in PROMO_PAGES else ''}
 <footer class="foot"><div class="wrap fgrid"><div><a class="brand" href="./">{logo("lg2")}<span>Hisaab<b>Mitra</b></span></a><p>Free, private money tools for India's freelancers and small businesses. आपका हिसाब, आसान भाषा में.</p></div>
 <div><h4>Tools</h4>{''.join(f'<a href="{h}">{t} {"generator" if t=="Invoice" else "calculator"}</a>' for h,t in NAV if h!="guides.html")}<a href="guides.html">Guides</a></div>
 <div><h4>About</h4><a href="about.html">About &amp; contact</a><a href="privacy.html">Privacy policy</a><a href="disclaimer.html">Disclaimer</a></div></div>
@@ -82,8 +85,8 @@ inv='''<section class="wrap phead noprint"><span class="chip">📄 Free tool · 
 page('invoice.html','Free GST Invoice Generator India – Download PDF | HisaabMitra','Create a GST invoice online for free with CGST/SGST or IGST, SAC codes and totals. Download as PDF. No signup; nothing is uploaded.',inv,
  faq=[('What must a GST invoice include?','Supplier name, address and GSTIN, invoice number and date, recipient details, SAC/HSN code, taxable value, GST rate and amount, and place of supply.'),('Can I use this if I\'m not GST registered?','Choose 0% and the generator makes a regular invoice. Don\'t charge GST unless you are registered.')])
 
-for fn,t,b in [('about.html','About & Contact','<p>HisaabMitra is a small, independent project that makes free money tools for India\'s freelancers and small businesses. We built it because GST and TDS shouldn\'t need a CA just to estimate a number.</p><p>Content is drafted with AI assistance and every rate and formula is checked by hand against official sources.</p><h2>Contact</h2><p>Found a mistake or want a new tool? Open an issue on <a href="https://github.com/saemali/tools-site/issues">GitHub</a>. We fix errors quickly.</p>'),
-('privacy.html','Privacy Policy','<p><b>Last updated: 15 October 2026.</b></p><p>All calculators run entirely in your browser. We do not collect, store or transmit any numbers or details you type. We use no cookies, no analytics and no tracking. Your light/dark theme choice is saved only in your own browser\'s local storage.</p><p>The site is hosted on GitHub Pages, which may keep standard server logs (such as IP addresses) as described in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub\'s privacy statement</a>.</p><p>Links to other websites go to third-party sites with their own policies.</p>'),
+for fn,t,b in [('about.html','About & Contact','<p>HisaabMitra is a small, independent project that makes free money tools for India\'s freelancers and small businesses. We built it because GST and TDS shouldn\'t need a CA just to estimate a number.</p><p>Content is drafted with AI assistance and every rate and formula is checked by hand against official sources.</p><h2>Contact</h2><p>Found a mistake or want a new tool? Email <a href="mailto:saemstudio@mail.grokbot.com">saemstudio@mail.grokbot.com</a> or open an issue on <a href="https://github.com/saemali/tools-site/issues">GitHub</a>. We fix errors quickly.</p>'),
+('privacy.html','Privacy Policy','<p><b>Last updated: 15 October 2026.</b></p><p>All calculators run entirely in your browser. We do not collect, store or transmit any numbers or details you type. We use no cookies, no analytics and no tracking. Your light/dark theme choice is saved only in your own browser\'s local storage.</p><p>The site is hosted on GitHub Pages, which may keep standard server logs (such as IP addresses) as described in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub\'s privacy statement</a>.</p><p>Links to other websites (such as our Pitch Kit on Gumroad) go to third-party sites with their own policies.</p>'),
 ('disclaimer.html','Disclaimer','<p>HisaabMitra tools give estimates for general information only. They are not tax, legal or financial advice. Tax laws, rates and thresholds change. We check them against official sources (CBIC, Income Tax Department, Union Budget documents) and show the date, but you should confirm with a qualified Chartered Accountant before filing or invoicing.</p><p>We aren\'t liable for decisions made using these tools. Some links point to our own paid products, and these are always clearly labelled.</p>')]:
     page(fn,f'{t} | HisaabMitra',f'{t} for HisaabMitra free GST, TDS and EMI tools.',f'<section class="wrap phead"><h1>{t}</h1></section><section class="wrap prose card">{b}</section>')
 open(f'{OUT}/favicon.svg','w').write(LOGO.replace(' class="logo"','').replace(' aria-hidden="true"',' xmlns="http://www.w3.org/2000/svg"'))
@@ -91,6 +94,7 @@ urls=''.join(f'<url><loc>{D}{p}</loc><lastmod>2026-10-15</lastmod></url>' for p 
 open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
 
 # ARTICLES (from content/*.md)
+KIT_GUIDES={'gstr-3b-due-date-october-2026','gst-rate-for-freelancers-2026','tds-on-freelance-payment','free-gst-invoice-generator','gstr-1-due-date-november-2026'}
 import glob,re,markdown
 ARTS=[]
 for f in sorted(glob.glob(f'{OUT}/content/0*.md')):
@@ -100,7 +104,8 @@ for f in sorted(glob.glob(f'{OUT}/content/0*.md')):
 SLUG={fn:m['slug']+'.html' for fn,m,_ in ARTS}
 for fn,m,body in ARTS:
     body=re.sub(r'```html\s*<script type="application/ld\+json">.*?</script>\s*```','',body,flags=re.S)
-    body='\n'.join(l for l in body.split('\n') if '[PITCH_KIT_URL]' not in l)
+    keep=m['slug'] in KIT_GUIDES
+    body='\n'.join((f'*Want clients who say yes faster? The [Freelancer Pitch Kit]({KIT}) has proposal, pitch and follow-up templates written for Indian freelancers.*' if keep else '') if '[PITCH_KIT_URL]' in l else l for l in body.split('\n'))
     for k,v in SLUG.items(): body=body.replace(f']({k})',f']({D}{v})')
     fq=re.search(r'## FAQ\n(.*?)\n## ',body,re.S).group(1)
     faq=re.findall(r'\*\*(.+?\?)\*\*\n(.+)',fq)
