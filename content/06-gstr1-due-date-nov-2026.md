@@ -3,7 +3,7 @@ title: "GSTR-1 Due Date November 2026: Checklist for Small Sellers"
 slug: gstr-1-due-date-november-2026
 primary_keyword: gstr-1 due date november 2026
 secondary_keywords: [gstr 1 due date monthly, gstr 1 due date quarterly, gstr 1 late fee, iff due date]
-meta_description: "GSTR-1 for October 2026 is due 11 Nov (monthly). The QRMP and IFF dates, why buyers care, and an 8-step checklist for small sellers after Diwali."
+meta_description: "GSTR-1 for October 2026 is due 11 Nov (monthly). The QRMP and IFF dates, why buyers care, and a 10-point checklist for small sellers after Diwali."
 publish_by: 2026-11-05
 status: DRAFT, needs saem's approval before publishing
 last_checked: 2026-10-15
@@ -33,25 +33,31 @@ GSTR-1 is your **sales statement**. Your buyers' **GSTR-2B**, and so their input
 
 Your GSTR-3B is also auto-filled from GSTR-1, so mistakes carry through.
 
-## Small seller's GSTR-1 checklist
+## Printable filing-day checklist (10 ticks)
 
-**Before you file**
-1. **Export every October invoice**, including cash sales above the B2C threshold and festive-offer bills.
-2. **Check invoice numbers run in order.** Note any cancelled numbers in the document summary (Table 13).
-3. **B2B vs B2C.** Has every B2B invoice got the buyer's correct GSTIN?
-4. **Place of supply.** Inter-state sales are IGST. Same state is CGST + SGST.
-5. **Rates after GST 2.0.** Since 22 Sep 2025 many goods moved to 5% / 18% / 40% (CBIC Notification 9/2025-IT(R)). Check your item master: an old 12% rate on a bill is a red flag.
-6. **HSN summary.** AATO up to ₹5 crore: **4-digit** HSN (mandatory on B2B, optional on B2C). Above ₹5 crore: **6-digit** (Notification 78/2020-CT, from 1 Apr 2021).
-7. **Credit and debit notes** for festive returns and discounts.
-8. **Advances received** for orders not yet billed, if any.
+**Before you open the portal**
+- ☐ **1. All October invoices exported,** including festive-offer bills and credit notes.
+- ☐ **2. Invoice numbers run in order;** cancelled numbers noted for the document summary (Table 13).
+- ☐ **3. Every B2B invoice has the buyer's correct GSTIN.** One wrong character sends their ITC to someone else.
+- ☐ **4. Place of supply checked:** inter-state is IGST, same state is CGST + SGST.
+- ☐ **5. Rates match your item master after GST 2.0** (an old 12% rate on a goods bill is a red flag).
+
+**On the portal**
+- ☐ **6. HSN summary filled:** 4-digit HSN if AATO is up to ₹5 crore, 6-digit above ₹5 crore.
+- ☐ **7. Credit and debit notes** for October returns and discounts entered against the original invoices.
+- ☐ **8. GSTR-1 totals match your books** before you submit.
+
+**After filing**
+- ☐ **9. Filed GSTR-1 downloaded** and saved with your October records.
+- ☐ **10. A note made of anything missed,** to amend through GSTR-1A (before filing that period's GSTR-3B) or in a later GSTR-1.
+
+**Next:** GSTR-3B for October is due **20 November 2026** (monthly filers).
+
+*Checklist drafted with AI assistance and checked by the HisaabMitra team against the GST portal user guides. Not tax advice.*
 
 **Tools that help**
 - Re-check any doubtful line in the free [GST calculator](https://saemali.github.io/tools-site/gst.html).
 - Raise clean, numbered invoices with the free [GST invoice maker](https://saemali.github.io/tools-site/invoice.html). Fewer fixes at month-end.
-
-**After you file**
-- Download the filed GSTR-1 PDF and keep it.
-- Missed something? Under the GST portal guide you can amend through **GSTR-1A** before filing that period's GSTR-3B, or in a later GSTR-1.
 
 ## Late filing
 
