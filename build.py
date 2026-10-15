@@ -103,7 +103,7 @@ open(f'{OUT}/sitemap.xml','w').write(f'<?xml version="1.0" encoding="UTF-8"?><ur
 KIT_GUIDES={'gstr-3b-due-date-october-2026','gst-rate-for-freelancers-2026','tds-on-freelance-payment','free-gst-invoice-generator','gstr-1-due-date-november-2026'}
 import glob,re,markdown
 ARTS=[]
-for f in sorted(glob.glob(f'{OUT}/content/0*.md')):
+for f in sorted(glob.glob(f'{OUT}/content/[0-9][0-9]-*.md')):
     raw=open(f).read(); _,fm,body=raw.split('---',2)
     meta={k.strip():v.strip().strip('"') for k,v in (l.split(':',1) for l in fm.strip().splitlines() if ':' in l)}
     ARTS.append((os.path.basename(f),meta,body))

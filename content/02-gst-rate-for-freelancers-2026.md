@@ -61,7 +61,7 @@ Note: export turnover still counts towards the ₹20 lakh registration threshold
 - Description of the service and its SAC code
 - Taxable value, GST rate, and CGST/SGST or IGST amounts
 - Place of supply
-- For exports under LUT: "Supply meant for export under LUT without payment of IGST" (or similar)
+- For exports under LUT, the endorsement required by CGST Rule 46: "SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX"
 
 You can make one in two minutes with our free [GST invoice maker](https://saemali.github.io/tools-site/invoice.html). No signup, nothing uploaded, and you download a PDF.
 
