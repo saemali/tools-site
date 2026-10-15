@@ -34,7 +34,7 @@ Not sure which one you chose? Log in to gst.gov.in and open Returns Dashboard. T
 
 ## Is my state in the 22nd group or the 24th group?
 
-QRMP GSTR-3B is due on the **22nd** of the month after the quarter for Chhattisgarh, MP, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. It is due on the **24th** for Himachal, Punjab, Uttarakhand, Haryana, Rajasthan, UP, Bihar, Sikkim, Arunachal, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (CGST Rule 61(1)(ii) table, inserted by Notification 82/2020-CT).
+QRMP GSTR-3B is due on the **22nd** of the month after the quarter for Chhattisgarh, MP, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. It is due on the **24th** for Himachal, Punjab, Uttarakhand, Haryana, Rajasthan, UP, Bihar, Sikkim, Arunachal, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (CGST Rule 61(1)(ii) Table, substituted by Notification 82/2020-CT).
 
 Simple rule: if you are unsure, file by the 22nd. Early is never late.
 

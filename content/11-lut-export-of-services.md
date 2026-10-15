@@ -53,7 +53,7 @@ Your export invoice should show:
 - Description of the service and SAC
 - Value (in foreign currency and/or INR)
 - **IGST: 0** or "Nil"
-- The endorsement required by CGST Rule 46: **"SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX"**. Adding your LUT ARN is good practice.
+- The endorsement required by CGST Rule 46: **"SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX"**. The invoice must also show the recipient\'s name and address, the delivery address and the country of destination. Adding your LUT ARN is good practice.
 
 You can draft it in our free [invoice maker](https://saemali.github.io/tools-site/invoice.html).
 

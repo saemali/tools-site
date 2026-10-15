@@ -9,7 +9,7 @@ Each block lists the target guide, new Q&A pairs in brand voice (from the former
 Source draft: `01-gstr3b-due-date-oct-2026.md` · Converted from: Quora #1
 
 **Which states file quarterly GSTR-3B on the 22nd and which on the 24th?**
-The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (proviso to CGST Rule 61(5), as amended by Notification 76/2020-Central Tax). Your portal dashboard shows your exact date.
+The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (CGST Rule 61(1)(ii) Table, substituted by Notification 82/2020-CT). Your portal dashboard shows your exact date.
 
 **Do QRMP filers need to count PMT-06 payments when filing quarterly GSTR-3B?**
 Yes. Tax already paid through PMT-06 for the first two months of the quarter sits in the cash ledger and is used against the quarter's liability. Subtract it to avoid paying the same tax twice.
@@ -22,7 +22,7 @@ Yes. Tax already paid through PMT-06 for the first two months of the quarter sit
     "name": "Which states file quarterly GSTR-3B on the 22nd and which on the 24th?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (proviso to CGST Rule 61(5), as amended by Notification 76/2020-Central Tax). Your portal dashboard shows your exact date."
+      "text": "The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (CGST Rule 61(1)(ii) Table, substituted by Notification 82/2020-CT). Your portal dashboard shows your exact date."
     }
   },
   {
@@ -48,7 +48,7 @@ Standalone (reference only):
       "name": "Which states file quarterly GSTR-3B on the 22nd and which on the 24th?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (proviso to CGST Rule 61(5), as amended by Notification 76/2020-Central Tax). Your portal dashboard shows your exact date."
+        "text": "The 22nd applies to Chhattisgarh, Madhya Pradesh, Gujarat, Maharashtra, Karnataka, Goa, Kerala, Tamil Nadu, Telangana, Andhra Pradesh, and the UTs of Daman & Diu and Dadra & Nagar Haveli, Puducherry, Andaman & Nicobar and Lakshadweep. The 24th applies to Himachal Pradesh, Punjab, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Sikkim, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya, Assam, West Bengal, Jharkhand, Odisha, J&K, Ladakh, Chandigarh and Delhi (CGST Rule 61(1)(ii) Table, substituted by Notification 82/2020-CT). Your portal dashboard shows your exact date."
       }
     },
     {
@@ -136,7 +136,7 @@ Source draft: `07-advance-tax-for-freelancers-dec-2026.md` · Converted from: Qu
 Anyone whose estimated tax for the year, after TDS, is ₹10,000 or more (Section 404, Income-tax Act 2025, unchanged from the old Act). Resident individuals aged 60 or more with no business or professional income are exempt (Section 403(3)).
 
 **What interest applies if I miss an advance tax instalment?**
-You pay 1% a month interest (old 234B/234C): on the shortfall if advance tax paid is under 90% of assessed tax, and on shortfalls at each instalment date. The rates are unchanged under the Income-tax Act 2025.
+You pay interest under Section 424 (formerly 234B): 1% a month if advance tax paid is under 90% of assessed tax. Section 425 (formerly 234C): 3% on the shortfall at 15 Jun/15 Sep/15 Dec and 1% at 15 Mar. The rates are unchanged under the Income-tax Act 2025.
 
 `mainEntity` items to merge:
 ```json
@@ -154,7 +154,7 @@ You pay 1% a month interest (old 234B/234C): on the shortfall if advance tax pai
     "name": "What interest applies if I miss an advance tax instalment?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "You pay 1% a month interest (old 234B/234C): on the shortfall if advance tax paid is under 90% of assessed tax, and on shortfalls at each instalment date. The rates are unchanged under the Income-tax Act 2025."
+      "text": "You pay interest under Section 424 (formerly 234B): 1% a month if advance tax paid is under 90% of assessed tax. Section 425 (formerly 234C): 3% on the shortfall at 15 Jun/15 Sep/15 Dec and 1% at 15 Mar. The rates are unchanged under the Income-tax Act 2025."
     }
   }
 ]
@@ -180,7 +180,7 @@ Standalone (reference only):
       "name": "What interest applies if I miss an advance tax instalment?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You pay 1% a month interest (old 234B/234C): on the shortfall if advance tax paid is under 90% of assessed tax, and on shortfalls at each instalment date. The rates are unchanged under the Income-tax Act 2025."
+        "text": "You pay interest under Section 424 (formerly 234B): 1% a month if advance tax paid is under 90% of assessed tax. Section 425 (formerly 234C): 3% on the shortfall at 15 Jun/15 Sep/15 Dec and 1% at 15 Mar. The rates are unchanged under the Income-tax Act 2025."
       }
     }
   ]
